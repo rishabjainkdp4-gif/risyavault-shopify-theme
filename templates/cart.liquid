@@ -1,0 +1,163 @@
+<style>
+  .cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .cart-header h1 {
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+  }
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  .cart-table th {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    color: #2c2c2c;
+    font-weight: 600;
+  }
+
+  .cart-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .cart-summary {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+  }
+
+  .cart-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .cart-actions button,
+  .cart-actions a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .continue-shopping {
+    background-color: #f0f0f0;
+    color: #2c2c2c;
+    border: none;
+    cursor: pointer;
+  }
+
+  .continue-shopping:hover {
+    background-color: #e0e0e0;
+  }
+
+  .checkout-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .checkout-btn:hover {
+    background-color: #3b7dd4;
+  }
+
+  .order-summary {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+  }
+
+  .order-summary h3 {
+    margin-top: 0;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4a90e2;
+    border-top: 2px solid #e0e0e0;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .cart-summary {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="cart-container">
+  <div class="cart-header">
+    <h1>Shopping Cart</h1>
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <div class="cart-summary">
+      <div>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr>
+                <td>
+                  <a href="{{ item.product.url }}">{{ item.title }}</a>
+                </td>
+                <td>{{ item.price | money }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.line_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{ cart.subtotal_price | money }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>Calculated at checkout</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-actions">
+      <a href="/collections/all" class="continue-shopping">Continue Shopping</a>
+      {{ 'Proceed to checkout' | checkout_button }}
+    </div>
+  {% else %}
+    <p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty. <a href="/collections/all">Continue shopping</a></p>
+  {% endif %}
+</div>

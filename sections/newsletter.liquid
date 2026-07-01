@@ -1,10 +1,109 @@
-<section style="background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-3)); color: white; padding: 60px 20px; text-align: center;">
-  <div class="container">
-    <h2 style="margin-bottom: 20px;">Stay Updated with Wellness Tips</h2>
-    <p style="margin-bottom: 20px;">Get exclusive tips, product recommendations, and wellness insights.</p>
-    <form action="#" method="post" style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto;">
-      <input type="email" placeholder="Your email" required style="flex: 1; padding: 12px 15px; border: none; border-radius: 8px;">
-      <button type="submit" class="btn" style="background-color: white; color: var(--color-accent-2);">Subscribe</button>
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Stay Updated with Wellness Tips"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Get exclusive tips, product recommendations, and wellness insights."
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .newsletter {
+    background: linear-gradient(135deg, #a8d5ba, #5b9fa8);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .newsletter p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    max-width: 300px;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem 2rem;
+    background-color: white;
+    color: #a8d5ba;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .newsletter-form button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .newsletter {
+      padding: 2rem;
+    }
+    
+    .newsletter h2 {
+      font-size: 1.5rem;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+    }
+    
+    .newsletter-form input {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<section class="newsletter">
+  <div class="newsletter-content">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.description }}</p>
+    <form action="#" method="post" class="newsletter-form">
+      <input 
+        type="email" 
+        placeholder="Your email" 
+        required
+        aria-label="Email address"
+      >
+      <button type="submit">Subscribe</button>
     </form>
   </div>
 </section>

@@ -8,7 +8,7 @@ A luxurious, modern, and conversion-focused Shopify theme designed for premium h
 - Clean, minimalist aesthetic
 - Spacious layouts with soft shadows
 - Rounded cards and smooth animations
-- Premium feel inspired by Apple and luxury skincare brands
+- Premium feel inspired by Apple and luxury brands
 
 ✅ **Conversion Optimized**
 - Sticky add-to-cart on mobile
@@ -23,9 +23,10 @@ A luxurious, modern, and conversion-focused Shopify theme designed for premium h
 - Recently viewed products
 - Mobile-first responsive design
 
-## 🎯 Brand Colors
+## 🎨 Brand Colors
 
-- Primary: White/Off-white (#FFFFFF, #F8F8F8)
+- Primary: White (#FFFFFF)
+- Secondary: Off-white (#F8F8F8)
 - Text: Dark Charcoal (#2C2C2C)
 - Accent 1: Soft Green (#A8D5BA)
 - Accent 2: Premium Blue (#4A90E2)
@@ -37,9 +38,8 @@ A luxurious, modern, and conversion-focused Shopify theme designed for premium h
 ├── config/
 │   └── settings_schema.json       # Theme customization settings
 ├── assets/
-│   ├── style.css                  # Main stylesheet
-│   ├── animations.css             # Smooth animations
-│   └── script.js                  # Main JavaScript
+│   ├── base.css                   # Main stylesheet
+│   └── theme.js                   # Main JavaScript
 ├── layout/
 │   └── theme.liquid               # Main layout template
 ├── sections/
@@ -52,11 +52,9 @@ A luxurious, modern, and conversion-focused Shopify theme designed for premium h
 ├── templates/
 │   ├── index.liquid               # Homepage
 │   ├── product.liquid             # Product page
-│   └── collection.liquid          # Collection page
-├── snippets/
-│   ├── product-card.liquid        # Reusable product card
-│   └── wishlist-button.liquid     # Wishlist button
-└── README.md                       # This file
+│   ├── collection.liquid          # Collection page
+│   └── cart.liquid                # Shopping cart
+└── README.md                      # This file
 ```
 
 ## 🚀 Quick Start
@@ -82,6 +80,14 @@ A luxurious, modern, and conversion-focused Shopify theme designed for premium h
 - Recovery & pain-relief items
 - Fitness accessories
 - Premium lifestyle products
+
+## 🎯 Customization
+
+Each section includes settings that allow you to:
+- Change colors and fonts
+- Modify text and headings
+- Adjust layouts and spacing
+- Enable/disable features
 
 ## 📞 Support
 

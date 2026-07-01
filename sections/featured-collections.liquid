@@ -1,15 +1,113 @@
-<section style="padding: 60px 20px;">
-  <div class="container">
-    <h2 style="text-align: center; margin-bottom: 40px;">Featured Collections</h2>
-    <div class="grid grid-4">
-      {% for collection in collections limit: 4 %}
-        <a href="{{ collection.url }}" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-decoration: none; color: inherit;">
-          {% if collection.featured_image %}
-            <img src="{{ collection.featured_image | img_url: '300x300' }}" alt="{{ collection.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
-          {% endif %}
-          <h3>{{ collection.title }}</h3>
-        </a>
-      {% endfor %}
-    </div>
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Collections"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .featured-collections {
+    padding: 4rem 2rem;
+  }
+
+  .featured-collections-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .featured-collections h2 {
+    font-size: 2rem;
+    color: #2c2c2c;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .collection-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .collection-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .collection-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .collection-card h3 {
+    color: #2c2c2c;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .collections-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .collections-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .collections-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="featured-collections">
+  <div class="featured-collections-header">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  <div class="collections-grid">
+    {% for collection in collections limit: 4 %}
+      <a href="{{ collection.url }}" class="collection-card">
+        {% if collection.featured_image %}
+          <img 
+            src="{{ collection.featured_image | img_url: '400x400' }}" 
+            alt="{{ collection.title }}"
+            loading="lazy"
+          >
+        {% else %}
+          <div style="width: 100%; height: 250px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #999;">No image</span>
+          </div>
+        {% endif %}
+        <h3>{{ collection.title }}</h3>
+      </a>
+    {% endfor %}
   </div>
 </section>

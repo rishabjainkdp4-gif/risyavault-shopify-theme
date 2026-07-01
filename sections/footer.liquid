@@ -1,5 +1,102 @@
-<footer style="background-color: var(--color-secondary); padding: 40px 20px; text-align: center; border-top: 1px solid var(--color-border);">
-  <div class="container">
-    <p>&copy; {{ "now" | date: "%Y" }} {{ settings.store_name }}. All rights reserved.</p>
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}
+
+<style>
+  .footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #2c2c2c;
+  }
+
+  .footer-section ul {
+    list-style: none;
+  }
+
+  .footer-section a {
+    display: block;
+    color: #2c2c2c;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  .footer-section a:hover {
+    color: #4a90e2;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 2rem;
+    text-align: center;
+    color: #2c2c2c;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ "now" | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+    </div>
   </div>
 </footer>

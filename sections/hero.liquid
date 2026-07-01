@@ -1,7 +1,92 @@
-<section style="background: linear-gradient(135deg, var(--color-secondary), var(--color-primary)); padding: 60px 20px; text-align: center;">
-  <div class="container">
-    <h1 style="font-size: 3rem; margin-bottom: 20px;">Upgrade Your Health, Recovery & Self-Care</h1>
-    <p style="font-size: 1.2rem; color: var(--color-text); margin-bottom: 30px;">Thoughtfully curated products designed to help you feel better every day.</p>
-    <a href="/collections/all" class="btn">Shop Now</a>
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Upgrade Your Health, Recovery & Self-Care"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Thoughtfully curated products designed to help you feel better every day."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #f8f8f8, #ffffff);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #2c2c2c;
+    font-weight: 700;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .hero-btn:hover {
+    background-color: #3b7dd4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(74, 144, 226, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.subtitle }}</p>
+    <a href="/collections/all" class="hero-btn">{{ section.settings.button_text }}</a>
   </div>
 </section>

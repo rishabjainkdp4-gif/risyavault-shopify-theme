@@ -1,18 +1,102 @@
-<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-    <div>
+<style>
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .product-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-info h1 {
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.75rem;
+    color: #4a90e2;
+    font-weight: bold;
+    margin: 1.5rem 0;
+  }
+
+  .product-description {
+    line-height: 1.8;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+  }
+
+  .product-form {
+    margin-bottom: 2rem;
+  }
+
+  .product-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .product-form button:hover {
+    background-color: #3b7dd4;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .product-info h1 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<div class="product-container">
+  <div class="product-grid">
+    <div class="product-image">
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" style="width: 100%; border-radius: 10px;">
+        <img 
+          src="{{ product.featured_image | img_url: '600x600' }}" 
+          alt="{{ product.title }}"
+        >
+      {% else %}
+        <div style="width: 100%; height: 600px; background: #f0f0f0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: #999;">No image available</span>
+        </div>
       {% endif %}
     </div>
-    <div>
+    <div class="product-info">
       <h1>{{ product.title }}</h1>
-      <p style="font-size: 2rem; color: var(--color-accent-2); font-weight: bold; margin: 20px 0;">₹{{ product.price | money_without_currency }}</p>
-      <p style="line-height: 1.6; margin-bottom: 30px;">{{ product.description }}</p>
-      <form action="/cart/add" method="post" style="margin-bottom: 30px;">
+      <div class="product-price">{{ product.price | money }}</div>
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+      <form action="/cart/add" method="post" class="product-form">
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Add to Cart</button>
+        <button type="submit">Add to Cart</button>
       </form>
+      <div style="padding-top: 1rem; border-top: 1px solid #e0e0e0; margin-top: 2rem;">
+        <p><strong>SKU:</strong> {{ product.selected_or_first_available_variant.sku }}</p>
+        <p><strong>Availability:</strong> {{ product.selected_or_first_available_variant.inventory_quantity }} in stock</p>
+      </div>
     </div>
   </div>
 </div>

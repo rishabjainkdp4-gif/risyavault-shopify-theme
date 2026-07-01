@@ -1,34 +1,38 @@
 [
   {
-    "name": "theme",
+    "name": "Theme Settings",
     "settings": [
       {
         "type": "header",
-        "content": "Color Scheme"
+        "content": "Colors"
       },
       {
         "type": "color",
-        "id": "color_primary",
+        "id": "color_primary_bg",
         "label": "Primary Background",
-        "default": "#FFFFFF"
+        "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "color_accent_1",
-        "label": "Accent Color 1 (Soft Green)",
-        "default": "#A8D5BA"
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#2c2c2c"
       },
       {
         "type": "color",
-        "id": "color_accent_2",
-        "label": "Accent Color 2 (Premium Blue)",
-        "default": "#4A90E2"
+        "id": "color_accent",
+        "label": "Accent Color",
+        "default": "#4a90e2"
+      },
+      {
+        "type": "header",
+        "content": "Store Info"
       },
       {
         "type": "text",
-        "id": "store_name",
-        "label": "Store Name",
-        "default": "Risyavault"
+        "id": "store_tagline",
+        "label": "Store Tagline",
+        "default": "Premium Wellness Products"
       }
     ]
   }
