@@ -1,0 +1,16 @@
+<section style="padding: 60px 20px; background-color: var(--color-secondary);">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 40px;">Bestsellers</h2>
+    <div class="grid grid-4">
+      {% for product in collections.featured.products limit: 8 %}
+        <a href="{{ product.url }}" style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-decoration: none; color: inherit; display: block;">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+          {% endif %}
+          <h3 style="font-size: 1rem;">{{ product.title }}</h3>
+          <p style="color: var(--color-accent-2); font-weight: bold; margin-top: 10px;">₹{{ product.price | money_without_currency }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

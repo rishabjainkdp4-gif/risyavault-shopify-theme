@@ -1,0 +1,14 @@
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+  <h1>{{ collection.title }}</h1>
+  <div class="grid grid-4" style="margin-top: 30px;">
+    {% for product in collection.products %}
+      <a href="{{ product.url }}" style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-decoration: none; color: inherit; display: block;">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+        {% endif %}
+        <h3>{{ product.title }}</h3>
+        <p style="color: var(--color-accent-2); font-weight: bold; margin-top: 10px;">₹{{ product.price | money_without_currency }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</div>

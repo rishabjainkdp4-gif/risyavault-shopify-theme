@@ -1,0 +1,15 @@
+<section style="padding: 60px 20px;">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 40px;">Featured Collections</h2>
+    <div class="grid grid-4">
+      {% for collection in collections limit: 4 %}
+        <a href="{{ collection.url }}" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-decoration: none; color: inherit;">
+          {% if collection.featured_image %}
+            <img src="{{ collection.featured_image | img_url: '300x300' }}" alt="{{ collection.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+          {% endif %}
+          <h3>{{ collection.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
